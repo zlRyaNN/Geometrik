@@ -23,26 +23,28 @@ emission_sphere_radius = 50.0
 flag_disable_z = true
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1.05
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 50.0
 linear_accel_random = 1.0
 color_ramp = SubResource( 4 )
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=6]
 colors = PoolColorArray( 0, 0.953125, 1, 1, 0.734375, 1, 0, 1 )
 
-[sub_resource type="GradientTexture" id=12]
-gradient = SubResource( 11 )
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 1
 emission_sphere_radius = 25.0
 flag_disable_z = true
 gravity = Vector3( 0, -98, 0 )
+angular_velocity = 0.000169926
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color_ramp = SubResource( 12 )
+color_ramp = SubResource( 7 )
 
 [sub_resource type="Animation" id=9]
 length = 0.5
@@ -179,10 +181,11 @@ visibility_rect = Rect2( -10, -10, 10, 10 )
 process_material = SubResource( 5 )
 
 [node name="Speed" type="Particles2D" parent="." index="4"]
+emitting = false
 amount = 100
 speed_scale = 5.0
 randomness = 1.0
-process_material = SubResource( 13 )
+process_material = SubResource( 8 )
 
 [node name="Anim" type="AnimationPlayer" parent="." index="5"]
 anims/Damaged = SubResource( 9 )
