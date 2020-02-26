@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://SRC/Jumper/Jumper.gd" type="Script" id=1]
 [ext_resource path="res://SRC/Jumper/Jumper.png" type="Texture" id=2]
@@ -8,6 +8,34 @@ extents = Vector2( 16, 8 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 2.76432 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Bounce"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -8.17183 ), Vector2( 0, 0 ) ]
+}
 
 [node name="Jumper" type="KinematicBody2D"]
 collision_layer = 16
@@ -29,4 +57,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Pivot"]
 texture = ExtResource( 2 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/Bounce = SubResource( 3 )
 [connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
