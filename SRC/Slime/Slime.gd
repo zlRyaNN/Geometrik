@@ -18,6 +18,7 @@ func _handle_movement():
 		_direction *= -1
 	
 	_motion.x = _direction * move_speed
+	$Anim.play("Walking")
 
 
 func _on_DamageArea_body_entered(body: PhysicsBody2D):

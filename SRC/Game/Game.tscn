@@ -385,5 +385,10 @@ rotation = -3.14159
 
 [node name="Slime" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1164.12, 297.206 )
+
+[node name="Slime2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1061.24, 171.172 )
+move_speed = 90.0
+suicide = true
 [connection signal="collected" from="Speed" to="Player" method="_on_Speed_collected"]
 [connection signal="collected" from="Shield" to="Player" method="_on_Shield_collected"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SRC/Actor/Actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SRC/Slime/Slime.gd" type="Script" id=2]
@@ -13,7 +13,23 @@ extents = Vector2( 14.3841, 1.23633 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 8 )
 
-[node name="Slime" instance=ExtResource( 1 )]
+[sub_resource type="Animation" id=4]
+resource_name = "Walking"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 1 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Slime" index="0" instance=ExtResource( 1 )]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource( 2 )
@@ -53,5 +69,8 @@ enabled = true
 exclude_parent = false
 cast_to = Vector2( 0, 1 )
 collision_mask = 16
+
+[node name="Anim" type="AnimationPlayer" parent="." index="5"]
+anims/Walking = SubResource( 4 )
 [connection signal="body_entered" from="Stomp" to="." method="_on_Stomp_body_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
