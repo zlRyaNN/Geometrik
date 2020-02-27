@@ -13,7 +13,7 @@ onready var _cooldown: = $Timer
 func _process(delta: float) -> void:
 	if is_instance_valid(_target):
 		_handle_aim(_target, -90)
-	
+		
 	_handle_shooting()
 
 

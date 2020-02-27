@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 func _setup(point_direction: Vector2) -> void:
 	_motion = point_direction
 
+
 func _on_Bullet_body_entered(body: PhysicsBody2D) -> void:
 	if is_instance_valid(body):
 		if body.has_method("_take_damage"):
@@ -20,6 +21,7 @@ func _on_Bullet_body_entered(body: PhysicsBody2D) -> void:
 			$Anim.play("Destroy")
 	else:
 		$Anim.play("Destroy")
+
 
 func _on_Explosion_body_entered(body: PhysicsBody2D) -> void:
 	if is_instance_valid(body):
@@ -29,4 +31,5 @@ func _on_Explosion_body_entered(body: PhysicsBody2D) -> void:
 
 
 func _on_Bullet_area_entered(area: Area2D) -> void:
-	$Anim.play("Destroy")
+	if area.is_in_group("Shield"):
+		$Anim.play("Destroy")
