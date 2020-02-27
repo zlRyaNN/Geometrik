@@ -24,7 +24,13 @@ func _handle_shooting() -> void:
 
 
 func _handle_aim(target: Node2D, deg_offset: float):
-	var direction: = target.position - position
+	var direction: = Vector2.ZERO
+	
+	if is_instance_valid(target):
+		direction = target.position - position
+	else:
+		direction = Vector2(0.0, 0.0)
+	
 	var angle: = rad2deg(atan2(direction.y - 32, direction.x))
 	$Pivot/Head.rotation_degrees = angle + deg_offset
 
