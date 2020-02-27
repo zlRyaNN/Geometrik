@@ -5,6 +5,11 @@ export (PackedScene) var bullet
 var _target: = null
 var _can_shot: = true
 
+onready var _turret: = $Pivot/Head
+onready var _shot_pos: = $Pivot/Head/ShotPos
+onready var _pointer: = $Pivot/Head/RayCast2D
+onready var _cooldown: = $Timer
+
 func _process(delta: float) -> void:
 	if is_instance_valid(_target):
 		_handle_aim(_target, -90)
@@ -13,14 +18,18 @@ func _process(delta: float) -> void:
 
 
 func _handle_shooting() -> void:
-	if $Pivot/Head/RayCast2D.is_colliding() and _can_shot:
+	if _pointer.is_colliding() and _pointer.get_collider().is_in_group("Player") and _can_shot:
+		$Anim.play("Shoting")
 		var temp = bullet.instance()
 		add_child(temp)
-		temp.global_position = $Pivot/Head.global_position
-		temp.rotation_degrees = $Pivot/Head.rotation_degrees + 180
-		temp._setup(($Pivot/Head/RayCast2D.get_collision_point() - position) * -1.0)
+		
+		temp.global_position = _shot_pos.global_position
+		temp.rotation_degrees = _turret.rotation_degrees + 180
+		temp._setup((_pointer.get_collision_point() - position) * -1.0)
+		
 		_can_shot = false
-		$Timer.start()
+		_cooldown.start()
+
 
 
 func _handle_aim(target: Node2D, deg_offset: float):
@@ -29,10 +38,10 @@ func _handle_aim(target: Node2D, deg_offset: float):
 	if is_instance_valid(target):
 		direction = target.position - position
 	else:
-		direction = Vector2(0.0, 0.0)
+		direction = lerp(_turret.rotation_degrees, 0, 0.08)
 	
 	var angle: = rad2deg(atan2(direction.y - 32, direction.x))
-	$Pivot/Head.rotation_degrees = angle + deg_offset
+	_turret.rotation_degrees = angle + deg_offset
 
 
 func _on_Trigger_body_entered(body: PhysicsBody2D) -> void:
