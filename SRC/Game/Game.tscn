@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://SRC/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://SRC/Game/Tielset-01.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://SRC/Jumper/Jumper.tscn" type="PackedScene" id=8]
 [ext_resource path="res://SRC/Powerup/Speed.tscn" type="PackedScene" id=9]
 [ext_resource path="res://SRC/Powerup/Shield.tscn" type="PackedScene" id=10]
+[ext_resource path="res://SRC/Turret/Turret.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -375,5 +376,9 @@ position = Vector2( 832, 172 )
 
 [node name="Shield" parent="." instance=ExtResource( 10 )]
 position = Vector2( 192, 172 )
+
+[node name="Turret" parent="." instance=ExtResource( 11 )]
+position = Vector2( 352, 256 )
+rotation = -3.14159
 [connection signal="collected" from="Speed" to="Player" method="_on_Speed_collected"]
 [connection signal="collected" from="Shield" to="Player" method="_on_Shield_collected"]

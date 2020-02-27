@@ -57,4 +57,5 @@ window/size/always_on_top=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0.215686, 0.196078, 0.196078, 1 )
 environment/default_environment="res://default_env.tres"
