@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://SRC/Actor/Actor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SRC/Slime/Slime.gd" type="Script" id=2]
+[ext_resource path="res://SRC/Slime/Slime.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14.9265, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 14.3841, 1.23633 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 8 )
+
+[node name="Slime" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource( 2 )
+move_speed = 100.0
+hit_points = 1
+
+[node name="Body" parent="." index="0"]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="Pivot" parent="." index="1"]
+editor/display_folded = true
+
+[node name="Sprite" parent="Pivot" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Stomp" type="Area2D" parent="." index="2"]
+editor/display_folded = true
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stomp" index="0"]
+modulate = Color( 0.00784314, 0, 1, 1 )
+position = Vector2( 0, -1.13905 )
+shape = SubResource( 2 )
+
+[node name="DamageArea" type="Area2D" parent="." index="3"]
+editor/display_folded = true
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+position = Vector2( 0, 8 )
+shape = SubResource( 3 )
+
+[node name="RayDown" type="RayCast2D" parent="." index="4"]
+position = Vector2( 0, 16 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 1 )
+collision_mask = 16
+[connection signal="body_entered" from="Stomp" to="." method="_on_Stomp_body_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
