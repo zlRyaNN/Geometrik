@@ -11,3 +11,9 @@ func _process(delta: float) -> void:
 
 func _setup(point_direction: Vector2) -> void:
 	_motion = point_direction
+
+func _on_Bullet_body_entered(body: PhysicsBody2D) -> void:
+	if body.has_method("_take_damage"):
+		body._take_damage(damage)
+		$Anim.play("Destroy")
+		

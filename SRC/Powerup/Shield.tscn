@@ -13,6 +13,7 @@ shader_param/time_factor = 25.0
 shader_param/amplitude = 1.5
 
 [node name="Shield" index="0" instance=ExtResource( 1 )]
+collision_layer = 32
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
