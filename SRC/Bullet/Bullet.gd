@@ -26,3 +26,7 @@ func _on_Explosion_body_entered(body: PhysicsBody2D) -> void:
 		if body.has_method("_take_damage"):
 			body._take_damage(explosion_damage)
 			$Anim.play("Destroy")
+
+
+func _on_Bullet_area_entered(area: Area2D) -> void:
+	$Anim.play("Destroy")

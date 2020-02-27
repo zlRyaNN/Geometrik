@@ -108,11 +108,13 @@ func _handle_jumping() -> void:
 
 func _handle_state() -> void:
 	if state == STATE.INVENCIBLE:
+		$ShieldArea/CollisionShape2D.disabled = false
 		$Invencible.emitting = true
 	elif state == STATE.SPEEDER:
 		$Speed.emitting = true
 		move_speed = _buffed_move_speed
 	elif state == STATE.DEFAULT:
+		$ShieldArea/CollisionShape2D.disabled = true
 		$Invencible.emitting = false
 		$Speed.emitting = false
 		move_speed = _default_move_speed
