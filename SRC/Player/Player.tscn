@@ -10,17 +10,17 @@ extents = Vector2( 16, 16 )
 [sub_resource type="CircleShape2D" id=2]
 radius = 24.8559
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=3]
 radius = 48.3523
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.311111, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 1, 0.501511, 0.0724792, 0.742188, 1 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 1
 emission_sphere_radius = 50.0
 flag_disable_z = true
@@ -31,15 +31,15 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 50.0
 linear_accel_random = 1.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 5 )
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 0, 0.953125, 1, 1, 0.734375, 1, 0, 1 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 1
 emission_sphere_radius = 25.0
 flag_disable_z = true
@@ -47,9 +47,9 @@ gravity = Vector3( 0, -98, 0 )
 angular_velocity = 0.000169926
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 8 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot/Sprite:modulate")
@@ -64,7 +64,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:disabled")
 tracks/0/interp = 1
@@ -184,7 +184,7 @@ shape = SubResource( 2 )
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldArea" index="0"]
-shape = SubResource( 11 )
+shape = SubResource( 3 )
 disabled = true
 
 [node name="Invencible" type="Particles2D" parent="." index="4"]
@@ -193,20 +193,29 @@ emitting = false
 amount = 5000
 speed_scale = 2.0
 visibility_rect = Rect2( -10, -10, 10, 10 )
-process_material = SubResource( 5 )
+process_material = SubResource( 6 )
 
 [node name="Speed" type="Particles2D" parent="." index="5"]
 emitting = false
 amount = 100
 speed_scale = 5.0
 randomness = 1.0
-process_material = SubResource( 8 )
+process_material = SubResource( 9 )
 
 [node name="Anim" type="AnimationPlayer" parent="." index="6"]
-anims/Damaged = SubResource( 9 )
-anims/Died = SubResource( 10 )
+anims/Damaged = SubResource( 10 )
+anims/Died = SubResource( 11 )
 
 [node name="CoolDown" type="Timer" parent="." index="7"]
 wait_time = 5.0
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="." index="8"]
+current = true
+zoom = Vector2( 0.7, 0.7 )
+limit_left = 0
+limit_top = 0
+smoothing_enabled = true
+drag_margin_top = 0.0
+drag_margin_right = 0.0
 [connection signal="timeout" from="CoolDown" to="." method="_on_CoolDown_timeout"]

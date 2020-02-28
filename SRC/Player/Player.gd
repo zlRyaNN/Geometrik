@@ -111,6 +111,7 @@ func _handle_state() -> void:
 		$ShieldArea/CollisionShape2D.disabled = false
 		$Invencible.emitting = true
 		$Speed.emitting = false
+		move_speed = _default_move_speed
 	elif state == STATE.SPEEDER:
 		$ShieldArea/CollisionShape2D.disabled = true
 		$Speed.emitting = true

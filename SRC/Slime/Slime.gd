@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 	_handle_movement()
 
 
-func _handle_movement():
+func _handle_movement() -> void:
 	if is_on_wall():
 		_direction *= -1
 	elif not $RayDown.is_colliding() and not suicide:
@@ -21,7 +21,7 @@ func _handle_movement():
 	$Anim.play("Walking")
 
 
-func _on_DamageArea_body_entered(body: PhysicsBody2D):
+func _on_DamageArea_body_entered(body: PhysicsBody2D) -> void:
 	if body.has_method("_take_damage") and body.has_method("_apply_knockback"):
 		body._take_damage(damage)
 		
@@ -33,6 +33,7 @@ func _on_DamageArea_body_entered(body: PhysicsBody2D):
 		
 		body._apply_knockback(knockback_dir, _damage_knockback)
 
-func _on_Stomp_body_entered(body: PhysicsBody2D):
+
+func _on_Stomp_body_entered(body: PhysicsBody2D) -> void:
 	body._apply_knockback(Vector2(0, -1), 1000)
 	queue_free()
