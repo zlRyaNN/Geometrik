@@ -148,12 +148,26 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ false ],
 "method": "set_process"
+}, {
+"args": [  ],
+"method": "_reset"
 } ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 
 [node name="Player" groups=[
@@ -207,7 +221,7 @@ anims/Damaged = SubResource( 10 )
 anims/Died = SubResource( 11 )
 
 [node name="CoolDown" type="Timer" parent="." index="7"]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." index="8"]

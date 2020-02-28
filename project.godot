@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Geometrik"
-run/main_scene="res://SRC/Game/Game.tscn"
+run/main_scene="res://SRC/Levels/SelectLevel.tscn"
 
 [display]
 

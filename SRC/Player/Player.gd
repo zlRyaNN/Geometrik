@@ -136,3 +136,7 @@ func _on_Speed_collected(power) -> void:
 func _on_Shield_collected(power) -> void:
 	state = STATE.INVENCIBLE
 	$CoolDown.start()
+
+
+func _reset():
+	get_tree().reload_current_scene()

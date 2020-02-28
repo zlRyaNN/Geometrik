@@ -6,36 +6,36 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.38342
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=2]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.147844, 0.493274, 0.717489, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0.858398, 0, 1, 1, 0.233735, 0.233735, 1, 0.310059, 0.310059, 0.310059, 1, 0.756863, 0.756863, 0.756863, 0 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 0 ), 0.0, 3.23451, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 2.0
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 150.0
+angular_velocity = 1.05
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "Destroy"
+[sub_resource type="Animation" id=8]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot:scale")
@@ -144,7 +144,7 @@ texture = ExtResource( 2 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
-shape = SubResource( 8 )
+shape = SubResource( 2 )
 disabled = true
 
 [node name="Explode" type="Particles2D" parent="."]
@@ -153,10 +153,10 @@ amount = 200
 lifetime = 0.25
 explosiveness = 1.0
 randomness = 1.0
-process_material = SubResource( 6 )
+process_material = SubResource( 7 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/Destroy = SubResource( 7 )
+anims/Destroy = SubResource( 8 )
 [connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="body_entered" from="Explosion" to="." method="_on_Explosion_body_entered"]
